@@ -28,7 +28,7 @@ label for your table of contents. The default is 'Table of Contents'.
 ### `$separator`
 
 This setting contains the XHTML markup that will be placed as a separator between the table of
-contents and the article. The default markup is a horizontal rule: <hr />.
+contents and the article. The default markup is a horizontal rule: `<hr />`.
 
 ## Usage
 
