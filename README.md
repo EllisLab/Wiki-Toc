@@ -46,10 +46,10 @@ facilitate styling via CSS.
 
 ## Change Log 
 
-- Version 1.3
+- 1.3
 	- Updated plugin to be 2.0 compatible
-- Version 1.2
+- 1.2
 	- Modified for compatibility with the current typography class (EE 1.6.5+).
-- Version 1.1
+- 1.1
 	- Added support for UTF-8 headings. Requires PHP 4.3.2 (or 4.2 with the PCRE library
 compiled correctly).
