@@ -41,7 +41,7 @@ class Wiki_toc {
 	/*  User Modifiable Class Variables
 	/* -------------------------------------*/
 
-	public $formatting		= 'default';		// Formatting plugin you wish to use, first letter capitalized. e.g. 'Markdown', 'Textile', etc.
+	public $formatting		= 'default';		// Formatting plugin you wish to use, 'markdown', 'textile', etc.
 	public $toc_tag		= '[TOC]';				// Tag you wish to use in your articles to place the table of contents
 	public $heading		= 'Table of Contents';	// Heading you'd like the table of contents to have
 	public $separator		= '<hr />';				// XHTML to separate the table of contents from the article
@@ -79,32 +79,18 @@ class Wiki_toc {
 		/*  Apply Text Formatting
 		/* -------------------------------------*/
 
-		if ($this->formatting != 'default')
-		{
-			if ( ! class_exists($this->formatting))
-			{
-				require PATH_THIRD.strtolower($this->formatting).'/pi.'.strtolower($this->formatting).EXT;
-			}
+		ee()->load->library('typography');
+		ee()->typography->parse_smileys = FALSE;
+		$fmt = ($this->formatting == 'default') ? 'xhtml' : strtolower($this->formatting);
 
-			// make sure the specified plugin has a constructor to parse the article
-			if (method_exists($this->formatting, $this->formatting))
-			{
-				$class = $this->formatting;
-				$TYPE = new $class($str);
-				$str = $TYPE->return_data;
-			}
-			else
-			{
-				ee()->TMPL->log_item("ERROR: Wiki_toc plugin---Invalid formatting plugin specified.");
-				return $this->return_data = str_replace($this->marker, $this->toc_tag, $str);
-			}
-		}
-		else
+		if ( ! isset(ee()->typography->text_fmt_plugins[$fmt]))
 		{
-			ee()->load->library('typography');
-			ee()->typography->parse_smileys = FALSE;
-			$str =  ee()->typography->xhtml_typography($str);
+			ee()->TMPL->log_item("ERROR: Wiki_toc plugin---Invalid formatting plugin specified.");
+			return $this->return_data = str_replace($this->marker, $this->toc_tag, $str);
 		}
+
+		$fmt = ($fmt == 'xhtml') ? 'auto_typography' : $fmt;
+		$str = ee()->typography->$fmt($str);
 
 		/* -------------------------------------
 		/*  Work the magic

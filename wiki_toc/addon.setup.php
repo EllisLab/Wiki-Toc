@@ -5,8 +5,9 @@ return array(
 	'author_url'  => 'https://ellislab.com/',
 	'name'        => 'Wiki Table of Contents',
 	'description' => 'Adds a Table of Contents to your Wiki articles',
-	'version'     => '2.0',
+	'version'     => '3.0',
 	'namespace'   => 'User\Addons\WikiTOC',
-	'settings_exist' => FALSE
+	'settings_exist' => FALSE,
+	'plugin.typography' => TRUE
 );
 

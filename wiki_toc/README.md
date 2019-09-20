@@ -47,6 +47,10 @@ The plugin will format your article with your preferred formatting plugin, and c
 
 ## Change Log
 
+### 3.0
+
+- Updated plugin to be 4.0 compatible
+
 ### 2.0
 
 - Updated plugin to be 3.0 compatible
